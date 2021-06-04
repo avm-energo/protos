@@ -2,26 +2,8 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 
-option java_multiple_files = true;
-option java_package = "io.grpc.avm.alise";
-option java_outer_classname = "AliseProto";
-option objc_class_prefix = "ALS";
-
 package alise;
 
-service Synchronizer {
-  // Left for tests
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
-  
-  rpc GetHealth (google.protobuf.Empty) returns (Health) {}
-  rpc SetHealth (Health) returns (Reply) {}
-  
-  rpc SetTime (UnixTimestamp) returns (Reply) {}
-  rpc GetTime (google.protobuf.Empty) returns (UnixTimestamp) {}
-}
-
-// Left for tests
-// The request message containing the user's name.
 message HelloRequest {
   string name = 1;
 }
@@ -31,6 +13,15 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
 }
+
+message TimeRequest {
+}
+
+message TimeReply {
+  uint32 sec = 1;
+  uint32 nsec =2;
+}
+
 
 message Reply {
   bool status = 1;
@@ -61,7 +52,7 @@ message Health {
 // Health code as proposal
   enum Code {
   Startup = 0;
-  Work = 1;
+  Work = 1;  
   Update = 2;
   StartupFail = 3;
   NoProject= 4;
@@ -73,3 +64,7 @@ message Health {
   Code code = 1;
   string Desc = 2;
 }  
+
+message PowerStatus {
+  uint32 PWRIN = 1;
+}
