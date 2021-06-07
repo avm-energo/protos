@@ -1,8 +1,14 @@
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+// Use  google.protobuf.Timestamp as timestamp
+import "google/protobuf/timestamp.proto";
 
 package alise;
+
+
+
 
 message HelloRequest {
   string name = 1;
@@ -27,11 +33,11 @@ message Reply {
   bool status = 1;
 }
 
+// Will be removed
 message UnixTimestamp {
   uint32 sec = 1;
   uint32 nsec =2;
 }
-
 
 // | Наименование           | Описание                                               | Режим индикации                                       |
 // | ---------------------- | ------------------------------------------------------ | ----------------------------------------------------- |
@@ -67,4 +73,9 @@ message Health {
 
 message PowerStatus {
   uint32 PWRIN = 1;
+}
+
+message PackedMessage {
+  string message = 1;
+  google.protobuf.Any content = 2;
 }
