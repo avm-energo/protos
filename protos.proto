@@ -28,6 +28,25 @@ message HealthQuery {
 }
 
 message Health {
+// code bits: 0 - there's some errors
+// 1 - adminja exists
+// 2 - core exists
+// 3 - ninja exists
+// 4 - vasya exists
+// 5 - petya exists
+// 8-10 - adminja status:
+//     000 - not working (none)
+//     001 - not installed
+//     010 - starting
+//     011 - need to merge settings
+//     100 - unknown status
+//     101 - stopping
+//     110 - stopped
+//     111 - unknown status
+// 11-13 - core status
+// 14-16 - ninja status
+// 17-19 - vasya status
+// 20-22 - petya status
   uint32 code = 1;
   string Desc = 2;
 }  
